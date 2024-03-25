@@ -1,0 +1,40 @@
+### Get token for scope read
+## which define in application.properties file in:
+##    spring.security.oauth2.authorizationserver.client.client-1.registration.scopes
+POST localhost:8080/oauth2/token
+Authorization: Basic YWRtaW4tY2xpZW50OnNlY3JldA== #username: admin-client password: secret
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=client_credentials&scope=user.read
+
+### Get token for scope write
+POST localhost:8080/oauth2/token
+Authorization: Basic YWRtaW4tY2xpZW50OnNlY3JldA== #username: admin-client password: secret
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=client_credentials&scope=user.write
+
+### Test token to get some info about it
+@token = get token from previous end points
+POST localhost:8080/oauth2/introspect
+Authorization: Basic YWRtaW4tY2xpZW50OnNlY3JldA== #username: admin-client password: secret
+Content-Type: application/x-www-form-urlencoded
+
+token= {{token}}
+
+#sample result:
+# {
+#  "active": true,
+#  "sub": "admin-client",
+#  "aud": [
+#    "admin-client"  -> #thats who is the token intended for(token owner('s))
+#  ],
+#  "nbf": 1711367877,
+#  "scope": "user.write",
+#  "iss": "http://localhost:8080",
+#  "exp": 1711368177,
+#  "iat": 1711367877,
+#  "jti": "9c0bb428-968d-41cd-a1c1-d03e6b6d9d6f",
+#  "client_id": "admin-client",
+#  "token_type": "Bearer"
+#}
