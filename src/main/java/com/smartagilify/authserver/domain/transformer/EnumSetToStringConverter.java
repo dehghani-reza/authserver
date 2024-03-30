@@ -9,16 +9,16 @@ import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 
 @Converter
-public class SetToStringConverter implements AttributeConverter<Set<Role>, String> {
+public class EnumSetToStringConverter implements AttributeConverter<Set<Enum<?>>, String> {
 	private static final String DELIMITER = ",";
 
 	@Override
-	public String convertToDatabaseColumn(Set<Role> roles) {
+	public String convertToDatabaseColumn(Set<Enum<?>> roles) {
 		return roles != null ? String.join(DELIMITER, roles.stream().map(Enum::name).toList()) : null;
 	}
 
 	@Override
-	public Set<Role> convertToEntityAttribute(String dbData) {
+	public Set<Enum<?>> convertToEntityAttribute(String dbData) {
 		return dbData != null ? new HashSet<>(Arrays.stream(dbData.split(DELIMITER)).map(Role::valueOf).toList()) : null;
 	}
 }

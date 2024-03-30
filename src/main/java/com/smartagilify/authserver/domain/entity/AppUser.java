@@ -3,7 +3,7 @@ package com.smartagilify.authserver.domain.entity;
 import java.util.Set;
 
 import com.smartagilify.authserver.domain.enumerations.Role;
-import com.smartagilify.authserver.domain.transformer.SetToStringConverter;
+import com.smartagilify.authserver.domain.transformer.EnumSetToStringConverter;
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
@@ -38,7 +38,7 @@ public class AppUser extends BaseEntity {
 	private Boolean isEnable;
 
 	@Column(name = "ROLE", nullable = false)
-	@Convert(converter = SetToStringConverter.class)
+	@Convert(converter = EnumSetToStringConverter.class)
 	private Set<Role> roles;
 }
 
