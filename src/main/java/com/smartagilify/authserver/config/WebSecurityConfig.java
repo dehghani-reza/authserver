@@ -118,7 +118,7 @@ public class WebSecurityConfig {
 		return OAuth2AuthorizationServerConfiguration.jwtDecoder(jwkSource);
 	}
 
-	//edn of JWK configuration 🔚
+	//end of JWK configuration 🔚
 
 	@Bean
 	public AuthorizationServerSettings authorizationServerSettings() {
