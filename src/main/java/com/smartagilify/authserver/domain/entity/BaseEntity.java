@@ -3,6 +3,7 @@ package com.smartagilify.authserver.domain.entity;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 import jakarta.persistence.GeneratedValue;
@@ -30,10 +31,10 @@ public abstract class BaseEntity implements Serializable {
 	private UUID id;
 
 	@CreationTimestamp
-	private LocalDate createDate;
+	private LocalDateTime createDate;
 
 	@UpdateTimestamp
-	private LocalDate updateDate;
+	private LocalDateTime updateDate;
 
 	@Version
 	private Long version;
